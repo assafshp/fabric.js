@@ -6942,8 +6942,10 @@ fabric.BaseBrush = fabric.util.createClass(/** @lends fabric.BaseBrush.prototype
       this._resetShadow();
       this.canvas.renderAll();
 
-      // fire event 'path' created
-      this.canvas.fire('path:created', { path: path });
+       
+        //KOTP: add extara data for thrown event
+        // fire event 'path' created
+      this.canvas.fire('path:created', { path: path, pathData: pathData, originLeft: originLeft, originTop: originTop });
     }
   });
 })();
@@ -13621,7 +13623,7 @@ fabric.util.object.extend(fabric.Object.prototype, /** @lends fabric.Object.prot
       extend = fabric.util.object.extend;
 
   if (fabric.Rect) {
-    console.warn('fabric.Rect is already defined');
+    //console.warn('fabric.Rect is already defined');
     return;
   }
 
@@ -20848,7 +20850,7 @@ fabric.util.object.extend(fabric.IText.prototype, /** @lends fabric.IText.protot
    * @param {Event} e Event object
    */
   onKeyDown: function(e) {
-    if (!this.isEditing) return;
+       if (!this.isEditing) return;
 
     if (e.keyCode in this._keysMap) {
       this[this._keysMap[e.keyCode]](e);
